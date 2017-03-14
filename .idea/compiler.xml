@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="configuration-service" />
+        <module name="service1" />
+        <module name="service2" />
+        <module name="service3" />
+        <module name="service4" />
+        <module name="zipkin" />
+        <module name="zipkincassandra" />
+        <module name="zipkinmysql" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="configuration-service" target="1.8" />
+      <module name="service1" target="1.8" />
+      <module name="service2" target="1.8" />
+      <module name="service3" target="1.8" />
+      <module name="service4" target="1.8" />
+      <module name="zipkin" target="1.8" />
+      <module name="zipkincassandra" target="1.8" />
+      <module name="zipkinmysql" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

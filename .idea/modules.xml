@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/configuration-service/configuration-service.iml" filepath="$PROJECT_DIR$/configuration-service/configuration-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Service1/service1.iml" filepath="$PROJECT_DIR$/Service1/service1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Service2/service2.iml" filepath="$PROJECT_DIR$/Service2/service2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Service3/service3.iml" filepath="$PROJECT_DIR$/Service3/service3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Service4/service4.iml" filepath="$PROJECT_DIR$/Service4/service4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zipkin/zipkin.iml" filepath="$PROJECT_DIR$/zipkin/zipkin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zipkincassandra/zipkincassandra.iml" filepath="$PROJECT_DIR$/zipkincassandra/zipkincassandra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zipkinmysql/zipkinmysql.iml" filepath="$PROJECT_DIR$/zipkinmysql/zipkinmysql.iml" />
+    </modules>
+  </component>
+</project>
