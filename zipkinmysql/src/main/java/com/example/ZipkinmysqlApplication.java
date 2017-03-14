@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import zipkin.server.*;
 
-@RefreshScope
+//@RefreshScope
 @SpringBootApplication
 @EnableZipkinServer
 public class ZipkinmysqlApplication {
