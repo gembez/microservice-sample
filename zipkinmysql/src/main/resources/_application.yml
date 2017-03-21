@@ -1,15 +1,16 @@
-server.port=9411
+server:
+  port: 9411
 
 spring:
   application:
-    name: zipkinmysql
+    name: zipkin-server
   datasource:
     schema: classpath:/mysql.sql
     url: jdbc:mysql://localhost:1024/zipkin?autoReconnect=true&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
-    initialize: false
+    initialize: true
     continue-on-error: true
   sleuth:
     enabled: false
@@ -17,6 +18,3 @@ spring:
 zipkin:
   storage:
       type: mysql
-
-
-
