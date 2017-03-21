@@ -6,14 +6,15 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/zipkin/pom.xml" />
         <option value="$PROJECT_DIR$/Service2/pom.xml" />
         <option value="$PROJECT_DIR$/Service3/pom.xml" />
         <option value="$PROJECT_DIR$/Service4/pom.xml" />
         <option value="$PROJECT_DIR$/zipkinmysql/pom.xml" />
-        <option value="$PROJECT_DIR$/zipkincassandra/pom.xml" />
         <option value="$PROJECT_DIR$/configuration-service/pom.xml" />
         <option value="$PROJECT_DIR$/Service1/pom.xml" />
+        <option value="$PROJECT_DIR$/zipkin-server/src/it/execjar/pom.xml" />
+        <option value="$PROJECT_DIR$/zipkin-server/src/it/elasticsearch-http/pom.xml" />
+        <option value="$PROJECT_DIR$/zipkin-server/src/it/minimal-dependencies/pom.xml" />
       </list>
     </option>
   </component>
