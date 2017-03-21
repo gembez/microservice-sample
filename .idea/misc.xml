@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/zipkin-server/src/it/execjar/pom.xml" />
         <option value="$PROJECT_DIR$/zipkin-server/src/it/elasticsearch-http/pom.xml" />
         <option value="$PROJECT_DIR$/zipkin-server/src/it/minimal-dependencies/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka-service/pom.xml" />
       </list>
     </option>
   </component>
