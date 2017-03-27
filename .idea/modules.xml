@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Accounting/Accounting.iml" filepath="$PROJECT_DIR$/Accounting/Accounting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CarManagement/CarManagement.iml" filepath="$PROJECT_DIR$/CarManagement/CarManagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Maps/Maps.iml" filepath="$PROJECT_DIR$/Maps/Maps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Notifications/Notifications.iml" filepath="$PROJECT_DIR$/Notifications/Notifications.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Payments/Payments.iml" filepath="$PROJECT_DIR$/Payments/Payments.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UserManagement/UserManagement.iml" filepath="$PROJECT_DIR$/UserManagement/UserManagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WebUI/WebUI.iml" filepath="$PROJECT_DIR$/WebUI/WebUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/configuration-service/configuration-service.iml" filepath="$PROJECT_DIR$/configuration-service/configuration-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-service/eureka-service.iml" filepath="$PROJECT_DIR$/eureka-service/eureka-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Service1/service1.iml" filepath="$PROJECT_DIR$/Service1/service1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Service2/service2.iml" filepath="$PROJECT_DIR$/Service2/service2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Service3/service3.iml" filepath="$PROJECT_DIR$/Service3/service3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Service4/service4.iml" filepath="$PROJECT_DIR$/Service4/service4.iml" />
       <module fileurl="file://$PROJECT_DIR$/zipkinmysql/zipkinmysql.iml" filepath="$PROJECT_DIR$/zipkinmysql/zipkinmysql.iml" />
     </modules>
   </component>
