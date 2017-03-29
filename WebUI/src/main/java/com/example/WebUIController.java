@@ -27,23 +27,7 @@ public class WebUIController {
 
     @Autowired Tracer tracer;
 
-    /*@Value("${message:Hello default}")
-    private String message;
-
-    @RequestMapping("/message")
-    String getMessage() {
-        return this.message;
-    }
-
-    @RequestMapping("/")
-    public String root() {
-        String msg = "Service 1 : Root";
-        log.info(msg);
-        tracer.addTag("SessionID", "123456789");
-        return msg;
-    }
-
-
+    /*
     @RequestMapping("/login")
     public String login() {
         String msg = "service1 : callService2";
@@ -56,8 +40,8 @@ public class WebUIController {
     */
 
     @RequestMapping("/getCars")
-    public String showCars(@RequestParam(value="sessionID", required=false, defaultValue="000") String sessionID, Model model) {
-        String msg = "WebUI" + ", Session ID= " + sessionID;
+    public String showCars(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "WebUI" + ", Session ID = " + sessionID;
         msg += " --> " + restTemplate.getForObject("http://localhost:6061/generateMap", String.class);
         tracer.addTag("SessionID", sessionID);
         log.info(msg);
@@ -66,8 +50,8 @@ public class WebUIController {
     }
 
     @RequestMapping("/reserveCar")
-    public String reserveCar(@RequestParam(value="sessionID", required=false, defaultValue="000") String sessionID, Model model) {
-        String msg = "WebUI" + ", Session ID= " + sessionID;
+    public String reserveCar(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "WebUI" + ", Session ID = " + sessionID;
         msg += " --> " + restTemplate.getForObject("http://localhost:9090/reserveCar", String.class);
         tracer.addTag("SessionID", sessionID);
         log.info(msg);
@@ -76,8 +60,8 @@ public class WebUIController {
     }
 
     @RequestMapping("/bookCar")
-    public String bookCar(@RequestParam(value="sessionID", required=false, defaultValue="000") String sessionID, Model model) {
-        String msg = "WebUI" + ", Session ID= " + sessionID;
+    public String bookCar(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "WebUI" + ", Session ID = " + sessionID;
         msg += " --> " + restTemplate.getForObject("http://localhost:9090/bookCar", String.class);
         tracer.addTag("SessionID", sessionID);
         log.info(msg);
@@ -85,7 +69,66 @@ public class WebUIController {
         return "main";
     }
 
+    @RequestMapping("/unlockCar")
+    public String unlock(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "WebUI" + ", Session ID = " + sessionID;
+        msg += " --> " + restTemplate.getForObject("http://localhost:9090/unlockCar", String.class);
+        tracer.addTag("SessionID", sessionID);
+        log.info(msg);
+        model.addAttribute("msg", msg);
+        return "main";
+    }
 
 
+    @RequestMapping("/endRental")
+    public String endRental(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "WebUI" + ", Session ID = " + sessionID;
+        msg += " --> " + restTemplate.getForObject("http://localhost:9090/lockCar", String.class);
+        tracer.addTag("SessionID", sessionID);
+        log.info(msg);
+        model.addAttribute("msg", msg);
+        return "main";
+    }
+
+
+    @RequestMapping("/showBalance")
+    public String showBalance(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "WebUI" + ", Session ID = " + sessionID;
+        msg += " --> " + restTemplate.getForObject("http://localhost:6060/getBalance", String.class);
+        tracer.addTag("SessionID", sessionID);
+        log.info(msg);
+        model.addAttribute("msg", msg);
+        return "main";
+    }
+
+    @RequestMapping("/bookPackage")
+    public String bookPackage(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "WebUI" + ", Session ID = " + sessionID;
+        msg += " --> " + restTemplate.getForObject("http://localhost:6060/newPackage", String.class);
+        tracer.addTag("SessionID", sessionID);
+        log.info(msg);
+        model.addAttribute("msg", msg);
+        return "main";
+    }
+
+    @RequestMapping("/showHistory")
+    public String showHistory(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "WebUI" + ", Session ID = " + sessionID;
+        msg += " --> " + restTemplate.getForObject("http://localhost:6062/getUserHistory", String.class);
+        tracer.addTag("SessionID", sessionID);
+        log.info(msg);
+        model.addAttribute("msg", msg);
+        return "main";
+    }
+
+    @RequestMapping("/findRoute")
+    public String findRoute(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "WebUI" + ", Session ID = " + sessionID;
+        msg += " --> " + restTemplate.getForObject("http://localhost:6061/getShortestRoute", String.class);
+        tracer.addTag("SessionID", sessionID);
+        log.info(msg);
+        model.addAttribute("msg", msg);
+        return "main";
+    }
 
 }

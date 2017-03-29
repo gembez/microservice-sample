@@ -3,6 +3,7 @@ package com.example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Created by Johnny on 08.03.17.
- */
-
+@RefreshScope
 @RestController
 public class CarManagementController {
 
@@ -56,5 +54,22 @@ public class CarManagementController {
         log.info(msg);
         return msg;
     }
+
+    @RequestMapping("/lockCar")
+    public String lockCar() {
+        String msg = "Car Management Service";
+        msg += " --> " + restTemplate.getForObject("http://localhost:6060/finalizeBooking", String.class);
+        log.info(msg);
+        return msg;
+    }
+
+    @RequestMapping("/getCarHistory")
+    public String showCarHistory() {
+        String msg = "Car Management Service";
+        msg += " --> " + restTemplate.getForObject("http://localhost:6061/getHistoricalRoutes", String.class);
+        log.info(msg);
+        return msg;
+    }
+
 
 }

@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Created by Johnny on 08.03.17.
- */
-
 @RefreshScope
 @RestController
 public class PaymentsController {
@@ -28,12 +24,13 @@ public class PaymentsController {
     @Autowired
     Tracer tracer;
 
-    @RequestMapping("/")
-    public String root() {
-        String msg = "Service 4 : Root";
+    @RequestMapping("/handlePayment")
+    public String handlePayment() {
+        String msg = "Payment Service";
+        msg += " --> " + restTemplate.getForObject("http://localhost:6063/notifyUser", String.class);
         log.info(msg);
-        tracer.addTag("SessionID", "123456789");
         return msg;
     }
+
 
 }

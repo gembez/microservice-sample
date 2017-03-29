@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Created by Johnny on 08.03.17.
- */
-
 @RefreshScope
 @RestController
 public class UserManagementController {
@@ -28,12 +24,13 @@ public class UserManagementController {
     @Autowired
     Tracer tracer;
 
-    @RequestMapping("/")
-    public String root() {
-        String msg = "Service 4 : Root";
+    @RequestMapping("/getUserHistory")
+    public String showHistory() {
+        String msg = "User Manangement";
+        msg += " --> " + restTemplate.getForObject("http://localhost:9090/getCarHistory", String.class);
         log.info(msg);
-        tracer.addTag("SessionID", "123456789");
         return msg;
     }
+
 
 }

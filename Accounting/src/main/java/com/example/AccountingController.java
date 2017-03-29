@@ -31,4 +31,29 @@ public class AccountingController {
         return msg;
     }
 
+    @RequestMapping("/getBalance")
+    public String displayBalance() {
+        String msg = "Accounting Service";
+        log.info(msg);
+        return msg;
+    }
+
+    @RequestMapping("/finalizeBooking")
+    public String finalizeBooking() {
+        String msg = "Accounting Service";
+        msg += " --> " + restTemplate.getForObject("http://localhost:5050/handlePayment", String.class);
+        log.info(msg);
+        return msg;
+    }
+
+    @RequestMapping("/newPackage")
+    public String bookPackage() {
+        String msg = "Accounting Service";
+        msg += " --> " + restTemplate.getForObject("http://localhost:5050/handlePayment", String.class);
+        log.info(msg);
+        return msg;
+    }
+
+
+
 }

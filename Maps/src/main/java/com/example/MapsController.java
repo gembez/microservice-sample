@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Created by Johnny on 08.03.17.
- */
-
 @RefreshScope
 @RestController
 public class MapsController {
@@ -33,8 +29,22 @@ public class MapsController {
         String msg = "Maps service";
         msg += " --> " + restTemplate.getForObject("http://localhost:9090/getAvailableCars", String.class);
         log.info(msg);
-        tracer.addTag("SessionID", "123456789");
         return msg;
     }
+
+    @RequestMapping("/getHistoricalRoutes")
+    public String generateRoutes() {
+        String msg = "Maps service";
+        log.info(msg);
+        return msg;
+    }
+
+    @RequestMapping("/getShortestRoute")
+    public String calculateRoutes() {
+        String msg = "Maps service";
+        log.info(msg);
+        return msg;
+    }
+
 
 }
