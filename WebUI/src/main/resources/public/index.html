@@ -1,10 +1,73 @@
 <!DOCTYPE HTML>
-<html>
-<head>
-    <title>Getting Started: Serving Web Content</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Car Sharing Application - Welcome</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="../static/css/main.css"
+          th:href="@{css/main.css}" rel="stylesheet" media="screen"/>
 </head>
+
 <body>
-<p>Get your greeting <a href="/greeting">here</a></p>
+
+<div class="container">
+    <div class="jumbotron">
+       <h1>Hello</h1>
+
+        <h2>Fellow Spring Framework Gurus!!!</h2>
+
+        <form action="/getCars">
+            <input type="submit" value="Search for available cars" />
+        </form>
+
+        <form action="/reserveCar">
+            <input type="submit" value="Reserve a car" />
+        </form>
+
+        <form action="/bookCar">
+            <input type="submit" value="Book a car" />
+        </form>
+
+        <form action="/unlockCar">
+            <input type="submit" value="Unlock a car" />
+        </form>
+
+        <form action="/endRental">
+            <input type="submit" value="End a rental" />
+        </form>
+
+        <form action="/showBalance">
+            <input type="submit" value="Show my balance" />
+        </form>
+
+        <form action="/bookPackage">
+            <input type="submit" value="Book a package" />
+        </form>
+
+        <form action="/showHistory">
+            <input type="submit" value="Show the history" />
+        </form>
+
+        <form action="/reportIssue">
+            <input type="submit" value="Report an issue" />
+        </form>
+
+        <form action="/findRoute">
+            <input type="submit" value="Find a route" />
+        </form>
+
+    </div>
+</div>
+
+
+
 </body>
 </html>

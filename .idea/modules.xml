@@ -3,15 +3,23 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Accounting/Accounting.iml" filepath="$PROJECT_DIR$/Accounting/Accounting.iml" />
+      <module fileurl="file://C:\Users\j.graeff\Dev\microservice-sample\Accounting\Accounting.iml" filepath="C:\Users\j.graeff\Dev\microservice-sample\Accounting\Accounting.iml" />
       <module fileurl="file://$PROJECT_DIR$/CarManagement/CarManagement.iml" filepath="$PROJECT_DIR$/CarManagement/CarManagement.iml" />
+      <module fileurl="file://C:\Users\j.graeff\Dev\microservice-sample\CarManagement\CarManagement.iml" filepath="C:\Users\j.graeff\Dev\microservice-sample\CarManagement\CarManagement.iml" />
       <module fileurl="file://$PROJECT_DIR$/Maps/Maps.iml" filepath="$PROJECT_DIR$/Maps/Maps.iml" />
+      <module fileurl="file://C:\Users\j.graeff\Dev\microservice-sample\Maps\Maps.iml" filepath="C:\Users\j.graeff\Dev\microservice-sample\Maps\Maps.iml" />
       <module fileurl="file://$PROJECT_DIR$/Notifications/Notifications.iml" filepath="$PROJECT_DIR$/Notifications/Notifications.iml" />
+      <module fileurl="file://C:\Users\j.graeff\Dev\microservice-sample\Notifications\Notifications.iml" filepath="C:\Users\j.graeff\Dev\microservice-sample\Notifications\Notifications.iml" />
       <module fileurl="file://$PROJECT_DIR$/Payments/Payments.iml" filepath="$PROJECT_DIR$/Payments/Payments.iml" />
+      <module fileurl="file://C:\Users\j.graeff\Dev\microservice-sample\Payments\Payments.iml" filepath="C:\Users\j.graeff\Dev\microservice-sample\Payments\Payments.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserManagement/UserManagement.iml" filepath="$PROJECT_DIR$/UserManagement/UserManagement.iml" />
+      <module fileurl="file://C:\Users\j.graeff\Dev\microservice-sample\UserManagement\UserManagement.iml" filepath="C:\Users\j.graeff\Dev\microservice-sample\UserManagement\UserManagement.iml" />
       <module fileurl="file://$PROJECT_DIR$/WebUI/WebUI.iml" filepath="$PROJECT_DIR$/WebUI/WebUI.iml" />
+      <module fileurl="file://C:\Users\j.graeff\Dev\microservice-sample\WebUI\WebUI.iml" filepath="C:\Users\j.graeff\Dev\microservice-sample\WebUI\WebUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/configuration-service/configuration-service.iml" filepath="$PROJECT_DIR$/configuration-service/configuration-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-service/eureka-service.iml" filepath="$PROJECT_DIR$/eureka-service/eureka-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/zipkinmysql/zipkinmysql.iml" filepath="$PROJECT_DIR$/zipkinmysql/zipkinmysql.iml" />
+      <module fileurl="file://C:\Users\j.graeff\Dev\microservice-sample\zipkinmysql\zipkinmysql.iml" filepath="C:\Users\j.graeff\Dev\microservice-sample\zipkinmysql\zipkinmysql.iml" />
     </modules>
   </component>
 </project>

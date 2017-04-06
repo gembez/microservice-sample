@@ -29,6 +29,7 @@
       <module name="elasticsearch-http" target="1.5" />
       <module name="eureka-service" target="1.8" />
       <module name="execjar" target="1.8" />
+      <module name="layouts" target="1.6" />
       <module name="Maps" target="1.8" />
       <module name="Maps (1)" target="1.8" />
       <module name="minimal-dependencies" target="1.5" />

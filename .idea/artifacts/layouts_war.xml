@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="layouts:war">
+    <output-path>$PROJECT_DIR$/WebUI_new/target</output-path>
+    <root id="archive" name="layouts-20140513.war">
+      <element id="artifact" artifact-name="layouts:war exploded" />
+    </root>
+  </artifact>
+</component>
