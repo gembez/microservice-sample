@@ -39,7 +39,8 @@ public class WebUIController {
 
     @RequestMapping("/login")
     public String login(HttpSession session) {
-        String sessionID = nextSessionId();
+        SessionIdentifierGenerator id = new SessionIdentifierGenerator();
+        String sessionID = id.nextSessionId();
         session.setAttribute("sessionID", sessionID);
         return "index";
     }
@@ -137,9 +138,14 @@ public class WebUIController {
         return "index";
     }
 
-    private SecureRandom random = new SecureRandom();
-
-    public String nextSessionId() {
-        return new BigInteger(130, random).toString(32);
+    @RequestMapping("/reportIssue")
+    public String reportIssue(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "Session_ID = " + sessionID + " || WebUI ";
+        msg += " --> " + restTemplate.getForObject("http://localhost:9090/createIssue", String.class);
+        tracer.addTag("SessionID", sessionID);
+        log.info(msg);
+        model.addAttribute("msg", msg);
+        return "index";
     }
+
 }

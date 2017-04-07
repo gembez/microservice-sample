@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
-    <title>Car Sharing Application - Welcome</title>
+    <title>Car Sharing Application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link href="https://cdn.jsdelivr.net/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
@@ -14,6 +14,11 @@
 
     <link href="../static/css/main.css"
           th:href="@{css/main.css}" rel="stylesheet" media="screen"/>
+
+
+    <link href="../static/css/font-awesome-4.7.0/css/font-awesome.min.css"
+          th:href="@{css/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" media="screen"/>
+
 </head>
 
 <body>
@@ -27,11 +32,11 @@
         <p class="lead">This is the frontend for the car sharing app to simulate process steps for conducting process mining
             via distributed tracing log data.</p>
         <p>
-
-        <a th:href="@{'/login'}"><span>Generate SessionID </span></a>
+            <a th:href="@{'/login'}"><i class="fa fa-refresh" aria-hidden="true"></i> Generate Session_ID</a>
         <code>
             <samp th:text="${session.sessionID}"/>
         </code>
+
 
         <!--<a th:href="@{'/getCars'+ '?sessionID=' + ${session.sessionID}}"><span>Delete</span></a>-->
 

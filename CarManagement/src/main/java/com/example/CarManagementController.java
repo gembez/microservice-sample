@@ -55,6 +55,13 @@ public class CarManagementController {
         return msg;
     }
 
+    @RequestMapping("/createIssue")
+    public String createIssue() {
+        String msg = "Car Management Service";
+        log.info(msg);
+        return msg;
+    }
+
     @RequestMapping("/lockCar")
     public String lockCar() {
         String msg = "Car Management Service";
