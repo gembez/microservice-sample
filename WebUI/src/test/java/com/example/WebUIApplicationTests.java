@@ -31,7 +31,7 @@ public class WebUIApplicationTests {
 	@Test
 	public void homePage() throws Exception {
 		// N.B. jsoup can be useful for asserting HTML content
-		mockMvc.perform(get("/index.html"))
+		mockMvc.perform(get("/"))
 				.andExpect(content().string(containsString("Get your greeting")));
 	}
 

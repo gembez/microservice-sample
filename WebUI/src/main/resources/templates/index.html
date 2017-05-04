@@ -16,79 +16,123 @@
           th:href="@{css/main.css}" rel="stylesheet" media="screen"/>
 
 
-    <link href="../static/css/font-awesome-4.7.0/css/font-awesome.min.css"
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           th:href="@{css/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" media="screen"/>
 
 </head>
-
 <body>
-
 
 <div class="container">
 
 
     <div class="jumbotron">
-        <h1 class="display-3">Carsharing Mockup App</h1>
-        <p class="lead">This is the frontend for the car sharing app to simulate process steps for conducting process mining
-            via distributed tracing log data.</p>
+        <a href="/" th:href="@{'/'}"><h1 class="display-3">Carsharing Mockup App</h1></a>
+        <p class="lead text-justify">Combining Process Mining and Distributed Tracing to Improve Root Cause Analysis</p>
+        <p>The idea of the project is close the gap between the application and business layer. Therefore, a process
+            mining technology is applied to data from a distributed tracing system that is connected to a microservice
+            architecture.
+            This frontend is intended for log data creation. A user (1 - 10) receives a session_ID for each session and
+            can perform multiple activities. These activities trigger a variety of microservices in the background. When
+            a new user is created, he or she gets a new session_ID assigned.
+        </p>
+        <p class="text-justify">The activities necessary the process mining can be created by clicking on <span class="font-italic">"Generate
+            activities &amp; reload data model"</span>. After creating the new activity log, a scheduling table is created that
+            triggers a new data load in the process mining tool Celonis.</p>
+
         <p>
-            <a th:href="@{'/login'}"><i class="fa fa-refresh" aria-hidden="true"></i> Generate Session_ID</a>
-        <code>
-            <samp th:text="${session.sessionID}"/>
-        </code>
-
-
-        <!--<a th:href="@{'/getCars'+ '?sessionID=' + ${session.sessionID}}"><span>Delete</span></a>-->
-
-        </p>
-
-        <p class="lead">
         <div class="row">
             <div class="col">
-                <a th:href="@{'/getCars'+ '?sessionID=' + ${session.sessionID}}"><button type="submit" class="btn btn-primary">Search for available cars</button></a>
-            </div>
-            <div class="col">
-                <a th:href="@{'/reserveCar'+ '?sessionID=' + ${session.sessionID}}"><button type="submit" class="btn btn-primary">Reserve car</button></a>
-            </div>
-            <div class="col">
-                <a th:href="@{'/bookCar'+ '?sessionID=' + ${session.sessionID}}"><button type="submit" class="btn btn-primary">Book car</button></a>
-            </div>
-            <div class="col">
-                <a th:href="@{'/unlockCar'+ '?sessionID=' + ${session.sessionID}}"><button type="submit" class="btn btn-primary">Unlock car</button></a>
-            </div>
-            <div class="col">
-                <a th:href="@{'/endRental'+ '?sessionID=' + ${session.sessionID}}"><button type="submit" class="btn btn-primary">End rental</button></a>
+                <a th:href="@{'/newUser'}" class="code"><i class="fa fa-refresh " aria-hidden="false"></i> New User</a>
+                <code class="code"><samp th:text="${session.person}"/></code>
             </div>
         </div>
         </p>
         <div class="row">
             <div class="col">
-                <a th:href="@{'/showBalance'+ '?sessionID=' + ${session.sessionID}}"><button type="submit" class="btn btn-primary">Show my balance</button></a>
-            </div>
-            <div class="col">
-                <a th:href="@{'/bookPackage'+ '?sessionID=' + ${session.sessionID}}"><button type="submit" class="btn btn-primary">Book package</button></a>
-            </div>
-            <div class="col">
-                <a th:href="@{'/showHistory'+ '?sessionID=' + ${session.sessionID}}"><button type="submit" class="btn btn-primary">Show history</button></a>
-            </div>
-            <div class="col">
-                <a th:href="@{'/reportIssue'+ '?sessionID=' + ${session.sessionID}}"><button type="submit" class="btn btn-primary">Report an issue</button></a>
-            </div>
-            <div class="col">
-                <a th:href="@{'/findRoute'+ '?sessionID=' + ${session.sessionID}}"><button type="submit" class="btn btn-primary">Find a route</button></a>
+                <a th:href="@{'/newSession'}" class="code"><i class="fa fa-refresh " aria-hidden="false"></i> New
+                    Session</a>
+                <code class="code"><samp th:text="${session.sessionID}"/></code>
             </div>
         </div>
-
-        <hr class="my-4"/>
-
-
-        <div class="highlight">
-            <code th:text="${msg}" th:if="${msg} != null"></code>
-        </div>
-
-
     </div>
 
+
+    <p class="lead">
+    <div class="row">
+        <div class="col">
+            <a th:href="@{'/getCars'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary  pull-left">Search for available cars</button>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a th:href="@{'/reserveCar'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary">Reserve car</button>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a th:href="@{'/bookCar'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary">Book car</button>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a th:href="@{'/unlockCar'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary">Unlock car</button>
+            </a>
+        </div>
+        <div class="col">
+            <a th:href="@{'/endRental'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary pull-right">End rental</button>
+            </a>
+        </div>
+    </div>
+    </p>
+    <div class="row">
+        <div class="col text-center">
+            <a th:href="@{'/showBalance'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary pull-left">Show my balance</button>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a th:href="@{'/bookPackage'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary">Book package</button>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a th:href="@{'/showHistory'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary">Show history</button>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a th:href="@{'/reportIssue'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary">Report an issue</button>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a th:href="@{'/findRoute'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary pull-right">Find a route</button>
+            </a>
+        </div>
+    </div>
+
+    <hr class="my-4"/>
+
+
+    <div class="highlight ">
+        <code th:text="${msg}" th:if="${msg} != null"></code>
+    </div>
+
+    <div class="my-3">
+        <div class="row">
+            <div class="col">
+                <a th:href="@{'/generateActivities'}" class="btn btn-info pull-right" role="button">Generate activities
+                    &amp;
+                    reload data model</a>
+            </div>
+        </div>
+    </div>
+
+
 </div>
+
 </body>
 </html>
