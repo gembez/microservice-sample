@@ -33,15 +33,17 @@ public class MapsController {
     }
 
     @RequestMapping("/getHistoricalRoutes")
-    public String generateRoutes() {
+    public String generateRoutes() throws InterruptedException {
         String msg = "Maps service";
+        Thread.sleep(200);
         log.info(msg);
         return msg;
     }
 
     @RequestMapping("/getShortestRoute")
-    public String calculateRoutes() {
+    public String calculateRoutes() throws InterruptedException {
         String msg = "Maps service";
+        Thread.sleep(600);
         log.info(msg);
         return msg;
     }

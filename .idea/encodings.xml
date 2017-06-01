@@ -8,11 +8,11 @@
     <file url="file://$PROJECT_DIR$/Payments" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserManagement" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/WebUI" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/WebUI_new" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configuration-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zipkin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zipkincassandra" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zipkinmysql" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zuul-service" charset="UTF-8" />
   </component>
 </project>

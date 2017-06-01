@@ -20,6 +20,7 @@
         <module name="UserManagement" />
         <module name="WebUI" />
         <module name="zipkinmysql" />
+        <module name="zuul-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -46,6 +47,7 @@
       <module name="zipkin-server" target="1.5" />
       <module name="zipkincassandra" target="1.8" />
       <module name="zipkinmysql" target="1.8" />
+      <module name="zuul-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -109,9 +109,10 @@ public class WebUIController {
 
 
     @RequestMapping("/endRental")
-    public String endRental(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+    public String endRental(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) throws InterruptedException {
         tracer.addTag("SessionID", sessionID);
         String msg = "Session_ID = " + sessionID + " || WebUI ";
+        Thread.sleep(2200);
         msg += " --> " + restTemplate.getForObject("http://localhost:9090/lockCar", String.class);
         log.info(msg);
         model.addAttribute("msg", msg);
@@ -245,6 +246,34 @@ public class WebUIController {
                 "                                          a1.trace_id = a4.trace_id\n" +
                 "                                          AND a4.span_id = a4.trace_id\n" +
                 "                                          AND a4.a_key = 'ss';");
+
+
+        // create application activities
+        jdbcTemplate.execute("INSERT INTO activities (\n" +
+                "  start_ts, end_ts, session_id, activity, trace_id, layer\n" +
+                ")\n" +
+                "  SELECT DISTINCT\n" +
+                "    FROM_UNIXTIME((s1.start_ts / 1000000))    AS start_ts,\n" +
+                "    NULL                                      AS end_ts,\n" +
+                "    a3.a_value                                AS session_ID,\n" +
+                "    CONCAT('a_', a1.endpoint_service_name)    AS activity,\n" +
+                "    LOWER(HEX(a1.trace_id))                   AS trace_id,\n" +
+                "    'application'                                AS layer\n" +
+                "  FROM zipkin_annotations AS a1\n" +
+                "    INNER JOIN zipkin_spans AS s1 ON\n" +
+                "                                    s1.trace_id = a1.trace_id\n" +
+                "                                    AND s1.id = a1.span_id\n" +
+                "                                    AND a1.a_key = 'sr'\n" +
+                "    JOIN zipkin_annotations AS a3 ON\n" +
+                "                                          a3.a_key = 'SessionID'\n" +
+                "                                          AND a1.trace_id = a3.trace_id\n" +
+                "                                          AND a3.span_id IN (SELECT DISTINCT b.id\n" +
+                "                                                             FROM zipkin_spans AS a, zipkin_spans AS b\n" +
+                "                                                             WHERE a.parent_id IS NULL\n" +
+                "                                                                   AND a.trace_id = b.trace_id\n" +
+                "                                                                   AND b.parent_id = a.id\n" +
+                "                                          );\n");
+
         jdbcTemplate.execute("INSERT INTO RELOAD_TRIGGER_TABLE (.RELOAD_TRIGGER_TABLE.DATA_MODEL_NAME, .RELOAD_TRIGGER_TABLE.RELOAD_REQUEST_TIME) VALUES ('Datamodel', AddTime(now(), '00:00:00'));");
 
         return "index";

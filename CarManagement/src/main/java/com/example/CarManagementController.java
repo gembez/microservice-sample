@@ -26,8 +26,9 @@ public class CarManagementController {
     @Autowired Tracer tracer;
 
     @RequestMapping("/getAvailableCars")
-    public String getAvailableCars() {
+    public String getAvailableCars() throws InterruptedException {
         String msg = "Car Management Service";
+        Thread.sleep(800);
         log.info(msg);
         return msg;
     }
@@ -49,15 +50,17 @@ public class CarManagementController {
     }
 
     @RequestMapping("/unlockCar")
-    public String unlockCar() {
+    public String unlockCar() throws InterruptedException {
         String msg = "Car Management Service";
+        Thread.sleep(300);
         log.info(msg);
         return msg;
     }
 
     @RequestMapping("/createIssue")
-    public String createIssue() {
+    public String createIssue() throws InterruptedException {
         String msg = "Car Management Service";
+        Thread.sleep(200);
         log.info(msg);
         return msg;
     }

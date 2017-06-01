@@ -42,14 +42,14 @@
         <p>
         <div class="row">
             <div class="col">
-                <a th:href="@{'/newUser'}" class="code"><i class="fa fa-refresh " aria-hidden="false"></i> New User</a>
+                <a th:href="@{'/newUser'}" class="code"><!--<i class="fa fa-refresh" aria-hidden="false"></i>!--> New User</a>
                 <code class="code"><samp th:text="${session.person}"/></code>
             </div>
         </div>
         </p>
         <div class="row">
             <div class="col">
-                <a th:href="@{'/newSession'}" class="code"><i class="fa fa-refresh " aria-hidden="false"></i> New
+                <a th:href="@{'/newSession'}" class="code"><!--<i class="fa fa-refresh" aria-hidden="false"></i>!--> New
                     Session</a>
                 <code class="code"><samp th:text="${session.sessionID}"/></code>
             </div>

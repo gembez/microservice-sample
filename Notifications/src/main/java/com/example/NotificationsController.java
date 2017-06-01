@@ -27,8 +27,9 @@ public class NotificationsController {
     Tracer tracer;
 
     @RequestMapping("/notifyUser")
-    public String notifyUser() {
+    public String notifyUser() throws InterruptedException {
         String msg = "Notification Service";
+        Thread.sleep(2200);
         log.info(msg);
         return msg;
     }

@@ -25,6 +25,7 @@
         <option value="$PROJECT_DIR$/UserManagement/pom.xml" />
         <option value="$PROJECT_DIR$/Notifications/pom.xml" />
         <option value="$PROJECT_DIR$/WebUI_new/pom.xml" />
+        <option value="$PROJECT_DIR$/zuul-service/pom.xml" />
       </list>
     </option>
   </component>

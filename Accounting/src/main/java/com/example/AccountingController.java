@@ -25,15 +25,17 @@ public class AccountingController {
     Tracer tracer;
 
     @RequestMapping("/handleBooking")
-    public String handleBooking() {
+    public String handleBooking() throws InterruptedException {
         String msg = "Accounting Service";
+        Thread.sleep(500);
         log.info(msg);
         return msg;
     }
 
     @RequestMapping("/getBalance")
-    public String displayBalance() {
+    public String displayBalance() throws InterruptedException {
         String msg = "Accounting Service";
+        Thread.sleep(300);
         log.info(msg);
         return msg;
     }
@@ -47,7 +49,7 @@ public class AccountingController {
     }
 
     @RequestMapping("/newPackage")
-    public String bookPackage() {
+    public String bookPackage()  {
         String msg = "Accounting Service";
         msg += " --> " + restTemplate.getForObject("http://localhost:5050/handlePayment", String.class);
         log.info(msg);
