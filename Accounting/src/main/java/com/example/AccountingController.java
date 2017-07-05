@@ -24,8 +24,17 @@ public class AccountingController {
     @Autowired
     Tracer tracer;
 
-    @RequestMapping("/handleBooking")
-    public String handleBooking() throws InterruptedException {
+    @RequestMapping("/")
+    public String test() throws InterruptedException {
+        String msg = "Accounting Service";
+        //Thread.sleep(500);
+        log.info(msg);
+        return msg;
+    }
+
+
+    @RequestMapping("/handleCarBooking")
+    public String handleCarBooking() throws InterruptedException {
         String msg = "Accounting Service";
         Thread.sleep(500);
         log.info(msg);

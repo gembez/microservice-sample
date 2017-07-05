@@ -25,7 +25,7 @@ public class MapsController {
     Tracer tracer;
 
     @RequestMapping("/generateMap")
-    public String root() {
+    public String generateMap() {
         String msg = "Maps service";
         msg += " --> " + restTemplate.getForObject("http://localhost:9090/getAvailableCars", String.class);
         log.info(msg);

@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 public class ZuulConfiguration {
 
     @Bean
+    @LoadBalanced
     public RestTemplate defaultRestTemplate() {
         return new RestTemplate();
     }

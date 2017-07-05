@@ -33,4 +33,12 @@ public class PaymentsController {
     }
 
 
+    @RequestMapping("/")
+    public String test() throws InterruptedException {
+        String msg = "Payment Service";
+        //Thread.sleep(500);
+        log.info(msg);
+        return msg;
+    }
+
 }

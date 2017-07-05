@@ -5,22 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.sleuth.Tracer;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.init.ScriptUtils;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.jdbc.JdbcTestUtils;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.LineNumberReader;
-import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.Arrays;
-
 
 @RefreshScope
 @Controller
@@ -37,7 +31,8 @@ public class WebUIController {
 
     private static final Logger log = LoggerFactory.getLogger(WebUIApplication.class.getName());
 
-    @Autowired Tracer tracer;
+    @Autowired
+    Tracer tracer;
 
     @RequestMapping("/")
     String index(){
@@ -91,7 +86,14 @@ public class WebUIController {
     public String bookCar(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
         tracer.addTag("SessionID", sessionID);
         String msg = "Session_ID = " + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://localhost:9090/bookCar", String.class);
+        //msg += " --> " + restTemplate.getForObject("http://localhost:9090/handleCarReservation", String.class);
+        ResponseEntity<String> profiles =
+                restTemplate.exchange(
+                        "http://localhost:9090/handleCarReservation",
+                        HttpMethod.PUT,
+                        null,
+                        String.class);
+        msg = profiles.toString();
         log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
@@ -171,8 +173,16 @@ public class WebUIController {
     }
 
 
+    // @Scheduled(fixedRate=30000) // script is executed every 30 s
     @RequestMapping("/generateActivities")
     public String generateActivities() throws Exception {
+
+        jdbcTemplate.execute("INSERT INTO activities_am (\n" +
+                "session_id )\n" +
+                "SELECT 1 AS session_ID;\n");
+
+
+        /*
 
         // empty activities table
         jdbcTemplate.execute("DELETE FROM activities;");
@@ -274,7 +284,10 @@ public class WebUIController {
                 "                                                                   AND b.parent_id = a.id\n" +
                 "                                          );\n");
 
+        // fill trigger table with timestamp in order to trigger a reload the data model in celonis (table is beeing checked every 5 min)
         jdbcTemplate.execute("INSERT INTO RELOAD_TRIGGER_TABLE (.RELOAD_TRIGGER_TABLE.DATA_MODEL_NAME, .RELOAD_TRIGGER_TABLE.RELOAD_REQUEST_TIME) VALUES ('Datamodel', AddTime(now(), '00:00:00'));");
+
+        */
 
         return "index";
     }

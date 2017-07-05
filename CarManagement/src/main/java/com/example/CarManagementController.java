@@ -41,10 +41,10 @@ public class CarManagementController {
         return msg;
     }
 
-    @RequestMapping("/bookCar")
-    public String bookCar() {
+    @RequestMapping("/handleCarReservation")
+    public String handleCarReservation() {
         String msg = "Car Management Service";
-        msg += " --> " + restTemplate.getForObject("http://localhost:6060/handleBooking", String.class);
+        msg += " --> " + restTemplate.getForObject("http://localhost:6060/handleCarBooking", String.class);
         log.info(msg);
         return msg;
     }
