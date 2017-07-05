@@ -6,10 +6,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
-//@EnableCircuitBreaker
-//@EnableBinding(Source.class)
 @EnableZuulProxy
-@RefreshScope
+//@RefreshScope
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ZuulProxyClientApplication {

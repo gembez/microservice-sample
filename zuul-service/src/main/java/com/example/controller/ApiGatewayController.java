@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RefreshScope
+// @RefreshScope
 public class ApiGatewayController {
 
     @Autowired
