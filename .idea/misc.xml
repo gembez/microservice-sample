@@ -11,12 +11,10 @@
         <option value="$PROJECT_DIR$/Service3/pom.xml" />
         <option value="$PROJECT_DIR$/Service4/pom.xml" />
         <option value="$PROJECT_DIR$/zipkinmysql/pom.xml" />
-        <option value="$PROJECT_DIR$/configuration-service/pom.xml" />
         <option value="$PROJECT_DIR$/Service1/pom.xml" />
         <option value="$PROJECT_DIR$/zipkin-server/src/it/execjar/pom.xml" />
         <option value="$PROJECT_DIR$/zipkin-server/src/it/elasticsearch-http/pom.xml" />
         <option value="$PROJECT_DIR$/zipkin-server/src/it/minimal-dependencies/pom.xml" />
-        <option value="$PROJECT_DIR$/eureka-service/pom.xml" />
         <option value="$PROJECT_DIR$/WebUI/pom.xml" />
         <option value="$PROJECT_DIR$/CarManagement/pom.xml" />
         <option value="$PROJECT_DIR$/Accounting/pom.xml" />
@@ -25,7 +23,16 @@
         <option value="$PROJECT_DIR$/UserManagement/pom.xml" />
         <option value="$PROJECT_DIR$/Notifications/pom.xml" />
         <option value="$PROJECT_DIR$/WebUI_new/pom.xml" />
+        <option value="$PROJECT_DIR$/configuration-service/pom.xml" />
+        <option value="$PROJECT_DIR$/payments-service/pom.xml" />
+        <option value="$PROJECT_DIR$/zipkin-service/pom.xml" />
         <option value="$PROJECT_DIR$/zuul-service/pom.xml" />
+        <option value="$PROJECT_DIR$/webui-service/pom.xml" />
+        <option value="$PROJECT_DIR$/user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/maps-service/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka-service/pom.xml" />
+        <option value="$PROJECT_DIR$/notifications-service/pom.xml" />
+        <option value="$PROJECT_DIR$/cars-service/pom.xml" />
       </list>
     </option>
   </component>

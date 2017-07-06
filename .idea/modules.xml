@@ -2,16 +2,24 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Accounting/Accounting.iml" filepath="$PROJECT_DIR$/Accounting/Accounting.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CarManagement/CarManagement.iml" filepath="$PROJECT_DIR$/CarManagement/CarManagement.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Maps/Maps.iml" filepath="$PROJECT_DIR$/Maps/Maps.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Notifications/Notifications.iml" filepath="$PROJECT_DIR$/Notifications/Notifications.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Payments/Payments.iml" filepath="$PROJECT_DIR$/Payments/Payments.iml" />
-      <module fileurl="file://$PROJECT_DIR$/UserManagement/UserManagement.iml" filepath="$PROJECT_DIR$/UserManagement/UserManagement.iml" />
-      <module fileurl="file://$PROJECT_DIR$/WebUI/WebUI.iml" filepath="$PROJECT_DIR$/WebUI/WebUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/accounting-service/Accounting.iml" filepath="$PROJECT_DIR$/accounting-service/Accounting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cars-service/CarManagement.iml" filepath="$PROJECT_DIR$/cars-service/CarManagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maps-service/Maps.iml" filepath="$PROJECT_DIR$/maps-service/Maps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notifications-service/Notifications.iml" filepath="$PROJECT_DIR$/notifications-service/Notifications.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payments-service/Payments.iml" filepath="$PROJECT_DIR$/payments-service/Payments.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/UserManagement.iml" filepath="$PROJECT_DIR$/user-service/UserManagement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webui-service/WebUI.iml" filepath="$PROJECT_DIR$/webui-service/WebUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/accounting-service/accounting-service.iml" filepath="$PROJECT_DIR$/accounting-service/accounting-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cars-service/cars-service.iml" filepath="$PROJECT_DIR$/cars-service/cars-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/configuration-service/configuration-service.iml" filepath="$PROJECT_DIR$/configuration-service/configuration-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-service/eureka-service.iml" filepath="$PROJECT_DIR$/eureka-service/eureka-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zipkinmysql/zipkinmysql.iml" filepath="$PROJECT_DIR$/zipkinmysql/zipkinmysql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maps-service/maps-service.iml" filepath="$PROJECT_DIR$/maps-service/maps-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notifications-service/notifications-service.iml" filepath="$PROJECT_DIR$/notifications-service/notifications-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payments-service/payments-service.iml" filepath="$PROJECT_DIR$/payments-service/payments-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webui-service/webui-service.iml" filepath="$PROJECT_DIR$/webui-service/webui-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zipkin-service/zipkin-service.iml" filepath="$PROJECT_DIR$/zipkin-service/zipkin-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zipkin-service/zipkinmysql.iml" filepath="$PROJECT_DIR$/zipkin-service/zipkinmysql.iml" />
       <module fileurl="file://$PROJECT_DIR$/zuul-service/zuul-service.iml" filepath="$PROJECT_DIR$/zuul-service/zuul-service.iml" />
     </modules>
   </component>

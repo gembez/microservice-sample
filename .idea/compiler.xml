@@ -7,25 +7,35 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Accounting" />
+        <module name="accounting-service" />
         <module name="CarManagement" />
+        <module name="cars-service" />
         <module name="configuration-service" />
         <module name="eureka-service" />
         <module name="Maps" />
+        <module name="maps-service" />
         <module name="Notifications" />
+        <module name="notifications-service" />
         <module name="Payments" />
+        <module name="payments-service" />
         <module name="service1" />
         <module name="service2" />
         <module name="service3" />
         <module name="service4" />
+        <module name="user-service" />
         <module name="UserManagement" />
         <module name="WebUI" />
+        <module name="webui-service" />
+        <module name="zipkin-service" />
         <module name="zipkinmysql" />
         <module name="zuul-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Accounting" target="1.8" />
+      <module name="accounting-service" target="1.8" />
       <module name="CarManagement" target="1.8" />
+      <module name="cars-service" target="1.8" />
       <module name="configuration-service" target="1.8" />
       <module name="elasticsearch-http" target="1.5" />
       <module name="eureka-service" target="1.8" />
@@ -33,18 +43,24 @@
       <module name="layouts" target="1.6" />
       <module name="Maps" target="1.8" />
       <module name="Maps (1)" target="1.8" />
+      <module name="maps-service" target="1.8" />
       <module name="minimal-dependencies" target="1.5" />
       <module name="Notifications" target="1.8" />
+      <module name="notifications-service" target="1.8" />
       <module name="NotificationService" target="1.8" />
       <module name="Payments" target="1.8" />
+      <module name="payments-service" target="1.8" />
       <module name="service1" target="1.8" />
       <module name="service2" target="1.8" />
       <module name="service3" target="1.8" />
       <module name="service4" target="1.8" />
+      <module name="user-service" target="1.8" />
       <module name="UserManagement" target="1.8" />
       <module name="WebUI" target="1.8" />
+      <module name="webui-service" target="1.8" />
       <module name="zipkin" target="1.8" />
       <module name="zipkin-server" target="1.5" />
+      <module name="zipkin-service" target="1.8" />
       <module name="zipkincassandra" target="1.8" />
       <module name="zipkinmysql" target="1.8" />
       <module name="zuul-service" target="1.8" />

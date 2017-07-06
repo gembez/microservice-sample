@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/Accounting" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/CarManagement" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Maps" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Notifications" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Payments" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/UserManagement" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/WebUI" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/accounting-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cars-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configuration-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/maps-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notifications-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/payments-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/webui-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zipkin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zipkin-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zipkincassandra" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/zipkinmysql" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zuul-service" charset="UTF-8" />
   </component>
 </project>
