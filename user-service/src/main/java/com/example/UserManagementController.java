@@ -24,13 +24,24 @@ public class UserManagementController {
     @Autowired
     Tracer tracer;
 
+    private static final String app_name = "User Service";
+
+
     @RequestMapping("/getUserHistory")
     public String showHistory() {
-        String msg = "User Manangement";
+        String msg = app_name;
         msg += " --> " + restTemplate.getForObject("http://cars-service/getCarHistory", String.class);
         log.info(msg);
         return msg;
     }
 
+
+    @RequestMapping("/test")
+    public String test() {
+        String msg = app_name;
+        //msg += " --> " + restTemplate.getForObject("http://cars-service/getCarHistory", String.class);
+        log.info(msg);
+        return msg;
+    }
 
 }

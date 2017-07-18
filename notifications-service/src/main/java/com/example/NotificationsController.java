@@ -26,10 +26,12 @@ public class NotificationsController {
     @Autowired
     Tracer tracer;
 
+    private static final String app_name = "Notifications Servie";
+
     @RequestMapping("/notifyUser")
     public String notifyUser() throws InterruptedException {
-        String msg = "Notification Service";
-        Thread.sleep(2200);
+        String msg = app_name;
+        Thread.sleep(600);
         log.info(msg);
         return msg;
     }

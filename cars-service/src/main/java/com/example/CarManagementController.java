@@ -25,9 +25,11 @@ public class CarManagementController {
 
     @Autowired Tracer tracer;
 
+    private static final String app_name = "Cars Service";
+
     @RequestMapping("/getAvailableCars")
     public String getAvailableCars() throws InterruptedException {
-        String msg = "Car Management Service";
+        String msg = app_name;
         Thread.sleep(800);
         log.info(msg);
         return msg;
@@ -35,7 +37,7 @@ public class CarManagementController {
 
     @RequestMapping("/allocateCar")
     public String allocateCar() {
-        String msg = "Car Management Service";
+        String msg = app_name;
         msg += " --> " + restTemplate.getForObject("http://notifications-service/notifyUser", String.class);
         log.info(msg);
         return msg;
@@ -43,15 +45,15 @@ public class CarManagementController {
 
     @RequestMapping("/handleCarBooking")
     public String handleCarReservation() {
-        String msg = "Car Management Service";
-        msg += " --> " + restTemplate.getForObject("http://accounting-service/initilizeBooking", String.class);
+        String msg = app_name;
+        msg += " --> " + restTemplate.getForObject("http://accounting-service/initializeBooking", String.class);
         log.info(msg);
         return msg;
     }
 
     @RequestMapping("/unlockCar")
     public String unlockCar() throws InterruptedException {
-        String msg = "Car Management Service";
+        String msg = app_name;
         Thread.sleep(300);
         log.info(msg);
         return msg;
@@ -59,23 +61,23 @@ public class CarManagementController {
 
     @RequestMapping("/createIssue")
     public String createIssue() throws InterruptedException {
-        String msg = "Car Management Service";
+        String msg = app_name;
         Thread.sleep(200);
         log.info(msg);
         return msg;
     }
 
     @RequestMapping("/lockCar")
-    public String lockCar() {
-        String msg = "Car Management Service";
-        msg += " --> " + restTemplate.getForObject("http://accounting-service/finalizeBooking", String.class);
+    public String lockCar() throws InterruptedException {
+        String msg = app_name;
+        Thread.sleep(800);
         log.info(msg);
         return msg;
     }
 
     @RequestMapping("/getCarHistory")
     public String showCarHistory() {
-        String msg = "Car Management Service";
+        String msg = app_name;
         msg += " --> " + restTemplate.getForObject("http://maps-service/getHistoricalRoutes", String.class);
         log.info(msg);
         return msg;

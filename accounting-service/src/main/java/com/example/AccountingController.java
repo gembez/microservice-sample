@@ -24,9 +24,12 @@ public class AccountingController {
     @Autowired
     Tracer tracer;
 
+    private static final String app_name = "Accounting Service";
+
+
     @RequestMapping("/test")
     public String test() throws InterruptedException {
-        String msg = "Accounting Service";
+        String msg = app_name;
         //Thread.sleep(500);
         log.info(msg);
         return msg;
@@ -35,7 +38,7 @@ public class AccountingController {
 
     @RequestMapping("/initializeBooking")
     public String initialize() throws InterruptedException {
-        String msg = "Accounting Service";
+        String msg = app_name;
         Thread.sleep(500);
         log.info(msg);
         return msg;
@@ -43,7 +46,7 @@ public class AccountingController {
 
     @RequestMapping("/getBalance")
     public String getBalance() throws InterruptedException {
-        String msg = "Accounting Service";
+        String msg = app_name;
         Thread.sleep(300);
         log.info(msg);
         return msg;
@@ -51,7 +54,8 @@ public class AccountingController {
 
     @RequestMapping("/finalizeBooking")
     public String finalizeBooking() {
-        String msg = "Accounting Service";
+        String msg = app_name;
+        log.info("angekommen");
         msg += " --> " + restTemplate.getForObject("http://payments-service/handlePayment", String.class);
         log.info(msg);
         return msg;
@@ -59,7 +63,7 @@ public class AccountingController {
 
     @RequestMapping("/newPackage")
     public String newPackage()  {
-        String msg = "Accounting Service";
+        String msg = app_name;
         msg += " --> " + restTemplate.getForObject("http://payments-service/handlePayment", String.class);
         log.info(msg);
         return msg;

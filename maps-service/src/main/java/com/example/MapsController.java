@@ -21,12 +21,15 @@ public class MapsController {
 
     private static final Logger log = LoggerFactory.getLogger(MapsApplication.class.getName());
 
+    private static final String app_name = "Maps Service";
+
+
     @Autowired
     Tracer tracer;
 
     @RequestMapping("/generateMap")
     public String generateMap() {
-        String msg = "Maps service";
+        String msg = app_name;
         msg += " --> " + restTemplate.getForObject("http://cars-service/getAvailableCars", String.class);
         log.info(msg);
         return msg;
@@ -34,7 +37,7 @@ public class MapsController {
 
     @RequestMapping("/getHistoricalRoutes")
     public String generateRoutes() throws InterruptedException {
-        String msg = "Maps service";
+        String msg = app_name;
         Thread.sleep(200);
         log.info(msg);
         return msg;
@@ -42,7 +45,7 @@ public class MapsController {
 
     @RequestMapping("/getRoute")
     public String calculateRoutes() throws InterruptedException {
-        String msg = "Maps service";
+        String msg = app_name;
         Thread.sleep(600);
         log.info(msg);
         return msg;

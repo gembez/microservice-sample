@@ -31,7 +31,7 @@ public class WebUIController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    private static final Logger log = LoggerFactory.getLogger(WebUIApplication.class.getName());
+    //private static final Logger log = LoggerFactory.getLogger(WebUIApplication.class.getName());
 
     private static final String device = "web";
 
@@ -71,7 +71,7 @@ public class WebUIController {
         tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
         msg += " --> " + restTemplate.getForObject("http://maps-service/generateMap", String.class);
-        log.info(msg);
+        //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
     }
@@ -82,15 +82,8 @@ public class WebUIController {
         tracer.addTag("sessionID", sessionID);
         tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        //msg += " --> " + restTemplate.getForObject("http://accounting/handleCarBooking", String.class);
-        ResponseEntity<String> profiles =
-                restTemplate.exchange(
-                        "http://cars-service/allocateCar",
-                        HttpMethod.GET,
-                        null,
-                        String.class);
-        msg += profiles.getBody().toString();
-        log.info(msg);
+        msg += " --> " + restTemplate.getForObject("http://cars-service/allocateCar", String.class);
+        //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
     }
@@ -100,14 +93,7 @@ public class WebUIController {
         tracer.addTag("sessionID", sessionID);
         tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        ResponseEntity<String> profiles =
-                restTemplate.exchange(
-                        "http://cars-service/allocateCar",
-                        HttpMethod.PUT,
-                        null,
-                        String.class);
-        msg += profiles.getBody().toString();
-        log.info(msg);
+        msg += " --> " + restTemplate.getForObject("http://cars-service/handleCarBooking", String.class);
         model.addAttribute("msg", msg);
         return "index";
     }
@@ -118,7 +104,7 @@ public class WebUIController {
         tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
         msg += " --> " + restTemplate.getForObject("http://cars-service/unlockCar", String.class);
-        log.info(msg);
+        //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
     }
@@ -129,9 +115,16 @@ public class WebUIController {
         tracer.addTag("sessionID", sessionID);
         tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        Thread.sleep(2200);
+        //Thread.sleep(2200);
         msg += " --> " + restTemplate.getForObject("http://cars-service/lockCar", String.class);
-        log.info(msg);
+        ResponseEntity<String> profiles =
+                restTemplate.exchange(
+                        "http://accounting-service/finalizeBooking",
+                        HttpMethod.GET,
+                        null,
+                        String.class);
+        msg += " --> " + profiles.getBody().toString();
+        //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
     }
@@ -143,7 +136,7 @@ public class WebUIController {
         tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
         msg += " --> " + restTemplate.getForObject("http://accounting-service/getBalance", String.class);
-        log.info(msg);
+        //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
     }
@@ -154,7 +147,7 @@ public class WebUIController {
         tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
         msg += " --> " + restTemplate.getForObject("http://accounting-service/newPackage", String.class);
-        log.info(msg);
+        //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
     }
@@ -165,7 +158,7 @@ public class WebUIController {
         tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
         msg += " --> " + restTemplate.getForObject("http://user-service/getUserHistory", String.class);
-        log.info(msg);
+        //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
     }
@@ -176,7 +169,7 @@ public class WebUIController {
         tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
         msg += " --> " + restTemplate.getForObject("http://maps-service/getRoute", String.class);
-        log.info(msg);
+        //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
     }
@@ -187,7 +180,7 @@ public class WebUIController {
         tracer.addTag("device", device);
         String msg = "sessionID = " + System.getProperty("line.separator") + sessionID + " || WebUI ";
         msg += " --> " + restTemplate.getForObject("http://cars-service/createIssue", String.class);
-        log.info(msg);
+        //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
     }
@@ -199,7 +192,7 @@ public class WebUIController {
         tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
         msg += " --> " + restTemplate.getForObject("http://cars-service/lockCar", String.class);
-        log.info(msg);
+        //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
     }

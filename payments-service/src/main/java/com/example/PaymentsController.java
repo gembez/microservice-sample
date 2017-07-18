@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-//@RefreshScope
 @RestController
 public class PaymentsController {
 
@@ -21,12 +20,14 @@ public class PaymentsController {
 
     private static final Logger log = LoggerFactory.getLogger(PaymentsApplication.class.getName());
 
+    private static final String app_name = "Payments Service";
+
     @Autowired
     Tracer tracer;
 
     @RequestMapping("/handlePayment")
     public String handlePayment() {
-        String msg = "Payment Service";
+        String msg = app_name;
         msg += " --> " + restTemplate.getForObject("http://notifications-service/notifyUser", String.class);
         log.info(msg);
         return msg;

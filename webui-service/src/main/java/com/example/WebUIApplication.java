@@ -22,11 +22,12 @@ public class WebUIApplication {
 	}
 
 
-	@Bean
-	public Sampler defaultSampler() {
+/*@Bean
+public Sampler defaultSampler() {
 		return new AlwaysSampler();
 	}
 
+*/
 	@Bean
 	@LoadBalanced
 	RestTemplate restTemplate() {
