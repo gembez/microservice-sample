@@ -79,12 +79,20 @@
                 <button type="submit" class="btn btn-primary">Unlock car</button>
             </a>
         </div>
+        <!--<div class="col text-center">
+            <a th:href="@{'http://localhost:8762/openCar'+ '?sessionID=' + ${session.sessionID}}">
+                <button type="submit" class="btn btn-primary">Unlock car</button>
+            </a>
+        </div>!-->
         <div class="col">
             <a th:href="@{'/endRental'+ '?sessionID=' + ${session.sessionID}}">
                 <button type="submit" class="btn btn-primary pull-right">End car rental</button>
             </a>
         </div>
-    </div>
+    <!--<button class="btn btn-success btn-lg" onclick="$.get('http://localhost:8762/endRental'+ '?sessionID=')">Crown Royale</button>!-->
+
+
+</div>
     </p>
     <div class="row">
         <div class="col text-center">
@@ -116,9 +124,13 @@
 
     <hr class="my-4"/>
 
+    <!--<form th:action="@{/login.html}" method="post">!-->
+
 
     <div class="highlight ">
-        <code th:text="${msg}" th:if="${msg} != null"></code>
+       <code th:text="${msg}" th:if="${msg} != null"></code>
+        <!-- <code th:text="${#request.getParameter('yourParameter')}">fg</code> !-->
+
     </div>
 
     <div class="my-3">

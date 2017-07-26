@@ -1,11 +1,6 @@
 package com.example;
 
-import com.netflix.discovery.DiscoveryClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +44,7 @@ public class WebUIController {
         String sessionID = id.nextSessionId();
         session.setAttribute("sessionID", sessionID);
         String username = session.getAttribute("person").toString();
-        jdbcTemplate.execute("INSERT INTO sessions(session_id, user_name) VALUES ('" + sessionID + "', '" + username + "');");
+        jdbcTemplate.execute("INSERT INTO sessions(session_id, user_id) VALUES ('" + sessionID + "', '" + username + "');");
         return "index";
     }
 
@@ -61,7 +56,7 @@ public class WebUIController {
         SessionIdentifierGenerator id = new SessionIdentifierGenerator();
         String sessionID = id.nextSessionId();
         session.setAttribute("sessionID", sessionID);
-        jdbcTemplate.execute("INSERT INTO sessions(session_id, user_name) VALUES ('" + sessionID + "', '" + username + "');");
+        jdbcTemplate.execute("INSERT INTO sessions(session_id, user_id) VALUES ('" + sessionID + "', '" + username + "');");
         return "index";
     }
 

@@ -9,32 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-//@RefreshScope
+@RefreshScope
 @RestController
 public class AccountingController {
 
     private final RestTemplate restTemplate;
+    private static final Logger log = LoggerFactory.getLogger(AccountingApplication.class.getName());
+    private static final String app_name = "Accounting Service";
 
     public AccountingController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
-
-    private static final Logger log = LoggerFactory.getLogger(AccountingApplication.class.getName());
-
-    @Autowired
-    Tracer tracer;
-
-    private static final String app_name = "Accounting Service";
-
-
-    @RequestMapping("/test")
-    public String test() throws InterruptedException {
-        String msg = app_name;
-        //Thread.sleep(500);
-        log.info(msg);
-        return msg;
-    }
-
 
     @RequestMapping("/initializeBooking")
     public String initialize() throws InterruptedException {
@@ -47,28 +32,36 @@ public class AccountingController {
     @RequestMapping("/getBalance")
     public String getBalance() throws InterruptedException {
         String msg = app_name;
+        // query database for user's balance
         Thread.sleep(300);
         log.info(msg);
         return msg;
     }
 
     @RequestMapping("/finalizeBooking")
-    public String finalizeBooking() {
+    public String finalizeBooking() throws InterruptedException {
         String msg = app_name;
-        log.info("angekommen");
+        Thread.sleep(200);
         msg += " --> " + restTemplate.getForObject("http://payments-service/handlePayment", String.class);
         log.info(msg);
         return msg;
     }
 
     @RequestMapping("/newPackage")
-    public String newPackage()  {
+    public String newPackage() throws InterruptedException {
         String msg = app_name;
+        Thread.sleep(400);
         msg += " --> " + restTemplate.getForObject("http://payments-service/handlePayment", String.class);
         log.info(msg);
         return msg;
     }
 
-
+    @RequestMapping("/test")
+    public String test() throws InterruptedException {
+        String msg = app_name;
+        //Thread.sleep(500);
+        log.info(msg);
+        return msg;
+    }
 
 }
