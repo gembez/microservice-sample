@@ -10,7 +10,7 @@ import org.springframework.context.annotation.*;
 import org.springframework.cloud.sleuth.sampler.*;
 import org.springframework.web.client.RestTemplate;
 
-@RefreshScope
+//@RefreshScope
 @EnableDiscoveryClient
 @SpringBootApplication
 public class AccountingApplication {

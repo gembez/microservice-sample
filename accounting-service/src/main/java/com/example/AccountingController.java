@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-@RefreshScope
 @RestController
 public class AccountingController {
 
@@ -21,10 +20,13 @@ public class AccountingController {
         this.restTemplate = restTemplate;
     }
 
+    @Autowired
+    Tracer tracer;
+
     @RequestMapping("/initializeBooking")
     public String initialize() throws InterruptedException {
         String msg = app_name;
-        Thread.sleep(500);
+        //  Thread.sleep(500);
         log.info(msg);
         return msg;
     }
@@ -33,7 +35,7 @@ public class AccountingController {
     public String getBalance() throws InterruptedException {
         String msg = app_name;
         // query database for user's balance
-        Thread.sleep(300);
+        //Thread.sleep(300);
         log.info(msg);
         return msg;
     }
@@ -41,7 +43,7 @@ public class AccountingController {
     @RequestMapping("/finalizeBooking")
     public String finalizeBooking() throws InterruptedException {
         String msg = app_name;
-        Thread.sleep(200);
+        //Thread.sleep(200);
         msg += " --> " + restTemplate.getForObject("http://payments-service/handlePayment", String.class);
         log.info(msg);
         return msg;
@@ -50,7 +52,7 @@ public class AccountingController {
     @RequestMapping("/newPackage")
     public String newPackage() throws InterruptedException {
         String msg = app_name;
-        Thread.sleep(400);
+        //Thread.sleep(400);
         msg += " --> " + restTemplate.getForObject("http://payments-service/handlePayment", String.class);
         log.info(msg);
         return msg;

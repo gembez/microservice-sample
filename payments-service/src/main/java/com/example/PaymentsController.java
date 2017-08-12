@@ -13,14 +13,12 @@ import org.springframework.web.client.RestTemplate;
 public class PaymentsController {
 
     private final RestTemplate restTemplate;
+    private static final Logger log = LoggerFactory.getLogger(PaymentsApplication.class.getName());
+    private static final String app_name = "Payments Service";
 
     public PaymentsController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
-
-    private static final Logger log = LoggerFactory.getLogger(PaymentsApplication.class.getName());
-
-    private static final String app_name = "Payments Service";
 
     @Autowired
     Tracer tracer;
@@ -32,7 +30,6 @@ public class PaymentsController {
         log.info(msg);
         return msg;
     }
-
 
     @RequestMapping("/")
     public String test() throws InterruptedException {

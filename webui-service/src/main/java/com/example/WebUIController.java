@@ -1,7 +1,9 @@
 package com.example;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.sleuth.Tracer;
+//import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 //@RefreshScope
 @Controller
@@ -26,12 +31,13 @@ public class WebUIController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    //private static final Logger log = LoggerFactory.getLogger(WebUIApplication.class.getName());
+
+    private static final Logger log = LoggerFactory.getLogger(WebUIApplication.class.getName());
 
     private static final String device = "web";
 
-    @Autowired
-    Tracer tracer;
+    //@Autowired
+    //Tracer tracer;
 
     @RequestMapping("/")
     String index(){
@@ -44,7 +50,12 @@ public class WebUIController {
         String sessionID = id.nextSessionId();
         session.setAttribute("sessionID", sessionID);
         String username = session.getAttribute("person").toString();
-        jdbcTemplate.execute("INSERT INTO sessions(session_id, user_id) VALUES ('" + sessionID + "', '" + username + "');");
+        Date date = new Date();
+        String strDateFormat = "yyyy-MM-dd HH:mm:ss";
+        DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+        String formattedDate= dateFormat.format(date);
+
+        jdbcTemplate.execute("INSERT INTO sessions(session_id, user_id, session_start, device) VALUES ('" + sessionID + "', '" + username + "', '" + formattedDate + "', '" + device + "');");
         return "index";
     }
 
@@ -56,16 +67,20 @@ public class WebUIController {
         SessionIdentifierGenerator id = new SessionIdentifierGenerator();
         String sessionID = id.nextSessionId();
         session.setAttribute("sessionID", sessionID);
-        jdbcTemplate.execute("INSERT INTO sessions(session_id, user_id) VALUES ('" + sessionID + "', '" + username + "');");
+        Date date = new Date();
+        String strDateFormat = "yyyy-MM-dd HH:mm:ss";
+        DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+        String formattedDate= dateFormat.format(date);
+        jdbcTemplate.execute("INSERT INTO sessions(session_id, user_id, session_start, device) VALUES ('" + sessionID + "', '" + username + "', '" + formattedDate + "', '" + device + "');");
         return "index";
     }
 
+    ///////////////////
+
     @RequestMapping("/getCars")
-    public String showCars(@RequestParam("sessionID") String sessionID, Model model) {
-        tracer.addTag("sessionID", sessionID);
-        tracer.addTag("device", device);
+    public String showCars(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://maps-service/generateMap", String.class);
+        msg += " --> " + restTemplate.getForObject("http://zuul-service/getCars?sessionID=" + sessionID, String.class);
         //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
@@ -74,10 +89,8 @@ public class WebUIController {
 
     @RequestMapping("/reserveCar")
     public String reserveCar(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
-        tracer.addTag("sessionID", sessionID);
-        tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://cars-service/allocateCar", String.class);
+        msg += " --> " + restTemplate.getForObject("http://zuul-service/reserveCar?sessionID=" + sessionID, String.class);
         //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
@@ -85,25 +98,32 @@ public class WebUIController {
 
     @RequestMapping("/bookCar")
     public String bookCar(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
-        tracer.addTag("sessionID", sessionID);
-        tracer.addTag("device", device);
+        //tracer.addTag("sessionID", sessionID);
+        //tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://cars-service/handleCarBooking", String.class);
+        msg += " --> " + restTemplate.getForObject("http://zuul-service/bookCar?sessionID=" + sessionID, String.class);
         model.addAttribute("msg", msg);
         return "index";
     }
 
+
+    // TEST
     @RequestMapping("/openCar")
     public String openCar(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
-        tracer.addTag("sessionID", sessionID);
-        tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://cars-service/unlockCar", String.class);
-        //log.info(msg);
+        msg += " --> " + restTemplate.getForObject("http://zuul-service/openCar?sessionID=" + sessionID, String.class);
         model.addAttribute("msg", msg);
         return "index";
     }
 
+    @RequestMapping("/endRental")
+    public String endRental(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
+        String msg = "sessionID = " + sessionID + " || WebUI ";
+        msg += " --> " + restTemplate.getForObject("http://zuul-service/endRental?sessionID=" + sessionID, String.class);
+        model.addAttribute("msg", msg);
+        return "index";
+    }
+/*
 
     @RequestMapping("/endRental")
     public String endRental(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) throws InterruptedException {
@@ -123,14 +143,12 @@ public class WebUIController {
         model.addAttribute("msg", msg);
         return "index";
     }
-
+*/
 
     @RequestMapping("/showBalance")
     public String showBalance(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
-        tracer.addTag("sessionID", sessionID);
-        tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://accounting-service/getBalance", String.class);
+        msg += " --> " + restTemplate.getForObject("http://zuul-service/showBalance?sessionID=" + sessionID, String.class);
         //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
@@ -138,10 +156,8 @@ public class WebUIController {
 
     @RequestMapping("/bookPackage")
     public String bookPackage(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
-        tracer.addTag("sessionID", sessionID);
-        tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://accounting-service/newPackage", String.class);
+        msg += " --> " + restTemplate.getForObject("http://zuul-service/bookPackage?sessionID=" + sessionID, String.class);
         //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
@@ -149,10 +165,8 @@ public class WebUIController {
 
     @RequestMapping("/showHistory")
     public String showHistory(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
-        tracer.addTag("sessionID", sessionID);
-        tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://user-service/getUserHistory", String.class);
+        msg += " --> " + restTemplate.getForObject("http://zuul-service/showHistory?sessionID=" + sessionID, String.class);
         //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
@@ -160,10 +174,8 @@ public class WebUIController {
 
     @RequestMapping("/findRoute")
     public String findRoute(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
-        tracer.addTag("sessionID", sessionID);
-        tracer.addTag("device", device);
         String msg = "sessionID = " + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://maps-service/getRoute", String.class);
+        msg += " --> " + restTemplate.getForObject("http://zuul-service/findRoute?sessionID=" + sessionID, String.class);
         //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
@@ -171,22 +183,8 @@ public class WebUIController {
 
     @RequestMapping("/reportIssue")
     public String reportIssue(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
-        tracer.addTag("sessionID", sessionID);
-        tracer.addTag("device", device);
         String msg = "sessionID = " + System.getProperty("line.separator") + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://cars-service/createIssue", String.class);
-        //log.info(msg);
-        model.addAttribute("msg", msg);
-        return "index";
-    }
-
-
-    @RequestMapping("/test")
-    public String test(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
-        tracer.addTag("sessionID", sessionID);
-        tracer.addTag("device", device);
-        String msg = "sessionID = " + sessionID + " || WebUI ";
-        msg += " --> " + restTemplate.getForObject("http://cars-service/lockCar", String.class);
+        msg += " --> " + restTemplate.getForObject("http://zuul-service/reportIssue?sessionID=" + sessionID, String.class);
         //log.info(msg);
         model.addAttribute("msg", msg);
         return "index";
@@ -202,7 +200,7 @@ public class WebUIController {
                 "SELECT 1 AS session_ID;\n");
 
 
-        /*
+
 
         // empty activities table
         jdbcTemplate.execute("DELETE FROM activities;");
@@ -307,13 +305,13 @@ public class WebUIController {
         // fill trigger table with timestamp in order to trigger a reload the data model in celonis (table is beeing checked every 5 min)
         jdbcTemplate.execute("INSERT INTO RELOAD_TRIGGER_TABLE (.RELOAD_TRIGGER_TABLE.DATA_MODEL_NAME, .RELOAD_TRIGGER_TABLE.RELOAD_REQUEST_TIME) VALUES ('Datamodel', AddTime(now(), '00:00:00'));");
 
-        */
+
 
         return "index";
     }
 
 
-/*
+
     @RequestMapping("/reloadModel")
     public String reloadModel() throws Exception {
 
@@ -322,6 +320,6 @@ public class WebUIController {
         return "index";
 
     }
-*/
+
 
     }

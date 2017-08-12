@@ -21,12 +21,12 @@ public class ZuulProxyClientApplication {
     RestTemplate restTemplate() {
         return new RestTemplate();
     }
-
+/*
     @Bean
     public Sampler defaultSampler() {
         return new AlwaysSampler();
     }
-
+*/
 
     public static void main(String[] args) {
         SpringApplication.run(ZuulProxyClientApplication.class, args);
