@@ -12,6 +12,7 @@
         <module name="cars-service" />
         <module name="configuration-service" />
         <module name="eureka-service" />
+        <module name="loggeneration-service" />
         <module name="Maps" />
         <module name="maps-service" />
         <module name="Notifications" />
@@ -41,6 +42,7 @@
       <module name="eureka-service" target="1.8" />
       <module name="execjar" target="1.8" />
       <module name="layouts" target="1.6" />
+      <module name="loggeneration-service" target="1.8" />
       <module name="Maps" target="1.8" />
       <module name="Maps (1)" target="1.8" />
       <module name="maps-service" target="1.8" />

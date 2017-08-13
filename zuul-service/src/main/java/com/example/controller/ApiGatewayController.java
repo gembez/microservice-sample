@@ -158,5 +158,12 @@ public class ApiGatewayController {
         return msg;
     }
 
+    @RequestMapping("/generateActivities")
+    public String generateActivities() throws Exception {
+        String msg = " " + restTemplate.getForObject("http://loggeneration-service/generateActivities", String.class);
+        log.info(msg);
+        return msg;
+    }
+
 }
 

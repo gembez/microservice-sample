@@ -31,13 +31,10 @@ public class WebUIController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-
     private static final Logger log = LoggerFactory.getLogger(WebUIApplication.class.getName());
 
     private static final String device = "web";
 
-    //@Autowired
-    //Tracer tracer;
 
     @RequestMapping("/")
     String index(){
@@ -75,7 +72,14 @@ public class WebUIController {
         return "index";
     }
 
-    ///////////////////
+    @RequestMapping("/generateActivities")
+    public String generateActivities(Model model) throws Exception {
+        String msg = restTemplate.getForObject("http://zuul-service/generateActivities", String.class);
+        log.info(msg);
+        model.addAttribute("msg", msg);
+        return "index";
+    }
+
 
     @RequestMapping("/getCars")
     public String showCars(@RequestParam(value="sessionID", required=false, defaultValue="null") String sessionID, Model model) {
@@ -191,135 +195,4 @@ public class WebUIController {
     }
 
 
-    // @Scheduled(fixedRate=30000) // script is executed every 30 s
-    @RequestMapping("/generateActivities")
-    public String generateActivities() throws Exception {
-
-        jdbcTemplate.execute("INSERT INTO activities_am (\n" +
-                "session_id )\n" +
-                "SELECT 1 AS session_ID;\n");
-
-
-
-
-        // empty activities table
-        jdbcTemplate.execute("DELETE FROM activities;");
-
-        // create successful activities
-        jdbcTemplate.execute("INSERT INTO activities (\n" +
-                "  start_ts, end_ts, session_id, activity, trace_id\n" +
-                ")\n" +
-                "  SELECT DISTINCT\n" +
-                "    FROM_UNIXTIME((s1.start_ts / 1000000))   AS start_ts,\n" +
-                "    FROM_UNIXTIME((a4.a_timestamp / 1000000)) AS end_ts,\n" +
-                "    a3.a_value                                AS session_ID,\n" +
-                "    SUBSTRING(s1.name, 7) AS activity,\n" +
-                "    LOWER(HEX(s1.trace_id))                  AS trace_id\n" +
-                " FROM zipkin_annotations AS a1\n" +
-                "    INNER JOIN zipkin_spans AS s1 ON\n" +
-                "                                    s1.trace_id = a1.trace_id\n" +
-                "                                    AND s1.id = a1.span_id\n" +
-                "                                     AND s1.parent_id IS NULL\n" +
-                "                                     AND a1.a_key = 'sr'\n" +
-                "    INNER JOIN zipkin_annotations AS a2 ON\n" +
-                "                                          a1.trace_id = a2.trace_id\n" +
-                "                                          AND a2.span_id = a2.trace_id\n" +
-                "                                          AND a1.trace_id NOT IN (SELECT trace_id FROM zipkin_annotations WHERE a_key = 'error')\n" +
-                "                                          AND a2.a_key = 'ss'\n" +
-                "    JOIN zipkin_annotations AS a3 ON\n" +
-                "                                          a3.a_key = 'sessionID'\n" +
-                "                                          AND a1.trace_id = a3.trace_id\n" +
-                "                                          AND a3.span_id IN (SELECT DISTINCT b.id\n" +
-                "                                                             FROM zipkin_spans AS a, zipkin_spans AS b\n" +
-                "                                                             WHERE a.parent_id IS NULL\n" +
-                "                                                                   AND a.trace_id = b.trace_id\n" +
-                "                                                                   AND b.parent_id = a.id\n" +
-                "                                          )\n" +
-                "    JOIN zipkin_annotations AS a4 ON\n" +
-                "                                          a1.trace_id = a4.trace_id\n" +
-                "                                          AND a4.span_id = a4.trace_id\n" +
-                "                                          AND a4.a_key = 'ss';");
-
-        // create failed actitvies
-        jdbcTemplate.execute("INSERT INTO activities (\n" +
-                "  start_ts, end_ts, session_id, activity, trace_id\n" +
-                ")\n" +
-                "  SELECT DISTINCT\n" +
-                "    FROM_UNIXTIME((s1.start_ts / 1000000))   AS start_ts,\n" +
-                "    FROM_UNIXTIME((a4.a_timestamp / 1000000)) AS end_ts,\n" +
-                "    a3.a_value                                AS session_ID,\n" +
-                "    CONCAT(SUBSTRING(s1.name, 7), ' failed') AS activity,\n" +
-                "    LOWER(HEX(s1.trace_id))                  AS trace_id\n" +
-                " FROM zipkin_annotations AS a1\n" +
-                "    INNER JOIN zipkin_spans AS s1 ON\n" +
-                "                                    s1.trace_id = a1.trace_id\n" +
-                "                                    AND s1.id = a1.span_id\n" +
-                "                                     AND s1.parent_id IS NULL\n" +
-                "                                     AND a1.a_key = 'sr'\n" +
-                "    INNER JOIN zipkin_annotations AS a2 ON\n" +
-                "                                          a1.trace_id = a2.trace_id\n" +
-                "                                          AND a2.span_id = a2.trace_id\n" +
-                "                                          AND a2.a_key = 'error'\n" +
-                "                                          AND a1.trace_id IN (SELECT trace_id FROM zipkin_annotations WHERE a_key = 'error')\n" +
-                "    JOIN zipkin_annotations AS a3 ON\n" +
-                "                                          a3.a_key = 'sessionID'\n" +
-                "                                          AND a1.trace_id = a3.trace_id\n" +
-                "                                          AND a3.span_id IN (SELECT DISTINCT b.id\n" +
-                "                                                             FROM zipkin_spans AS a, zipkin_spans AS b\n" +
-                "                                                             WHERE a.parent_id IS NULL\n" +
-                "                                                                   AND a.trace_id = b.trace_id\n" +
-                "                                                                   AND b.parent_id = a.id\n" +
-                "                                          )\n" +
-                "    JOIN zipkin_annotations AS a4 ON\n" +
-                "                                          a1.trace_id = a4.trace_id\n" +
-                "                                          AND a4.span_id = a4.trace_id\n" +
-                "                                          AND a4.a_key = 'ss';");
-
-
-        // create application activities
-        jdbcTemplate.execute("INSERT INTO activities (\n" +
-                "  start_ts, end_ts, session_id, activity, trace_id, layer\n" +
-                ")\n" +
-                "  SELECT DISTINCT\n" +
-                "    FROM_UNIXTIME((s1.start_ts / 1000000))    AS start_ts,\n" +
-                "    NULL                                      AS end_ts,\n" +
-                "    a3.a_value                                AS session_ID,\n" +
-                "    CONCAT('a_', a1.endpoint_service_name)    AS activity,\n" +
-                "    LOWER(HEX(a1.trace_id))                   AS trace_id,\n" +
-                "    'application'                                AS layer\n" +
-                "  FROM zipkin_annotations AS a1\n" +
-                "    INNER JOIN zipkin_spans AS s1 ON\n" +
-                "                                    s1.trace_id = a1.trace_id\n" +
-                "                                    AND s1.id = a1.span_id\n" +
-                "                                    AND a1.a_key = 'sr'\n" +
-                "    JOIN zipkin_annotations AS a3 ON\n" +
-                "                                          a3.a_key = 'sessionID'\n" +
-                "                                          AND a1.trace_id = a3.trace_id\n" +
-                "                                          AND a3.span_id IN (SELECT DISTINCT b.id\n" +
-                "                                                             FROM zipkin_spans AS a, zipkin_spans AS b\n" +
-                "                                                             WHERE a.parent_id IS NULL\n" +
-                "                                                                   AND a.trace_id = b.trace_id\n" +
-                "                                                                   AND b.parent_id = a.id\n" +
-                "                                          );\n");
-
-        // fill trigger table with timestamp in order to trigger a reload the data model in celonis (table is beeing checked every 5 min)
-        jdbcTemplate.execute("INSERT INTO RELOAD_TRIGGER_TABLE (.RELOAD_TRIGGER_TABLE.DATA_MODEL_NAME, .RELOAD_TRIGGER_TABLE.RELOAD_REQUEST_TIME) VALUES ('Datamodel', AddTime(now(), '00:00:00'));");
-
-
-
-        return "index";
-    }
-
-
-
-    @RequestMapping("/reloadModel")
-    public String reloadModel() throws Exception {
-
-        // empty activities table
-        jdbcTemplate.execute("INSERT INTO RELOAD_TRIGGER_TABLE (.RELOAD_TRIGGER_TABLE.DATA_MODEL_NAME, .RELOAD_TRIGGER_TABLE.RELOAD_REQUEST_TIME) VALUES ('Datamodel', AddTime(now(), '00:00:00'));");
-        return "index";
-
-    }
-
-
-    }
+}

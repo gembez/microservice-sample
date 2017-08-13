@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/cars-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configuration-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loggeneration-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/maps-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notifications-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/payments-service" charset="UTF-8" />

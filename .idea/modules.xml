@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/cars-service/cars-service.iml" filepath="$PROJECT_DIR$/cars-service/cars-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/configuration-service/configuration-service.iml" filepath="$PROJECT_DIR$/configuration-service/configuration-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-service/eureka-service.iml" filepath="$PROJECT_DIR$/eureka-service/eureka-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loggeneration-service/loggeneration-service.iml" filepath="$PROJECT_DIR$/loggeneration-service/loggeneration-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/maps-service/maps-service.iml" filepath="$PROJECT_DIR$/maps-service/maps-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/notifications-service/notifications-service.iml" filepath="$PROJECT_DIR$/notifications-service/notifications-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/payments-service/payments-service.iml" filepath="$PROJECT_DIR$/payments-service/payments-service.iml" />

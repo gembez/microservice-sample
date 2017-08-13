@@ -27,29 +27,27 @@
 
     <div class="jumbotron">
         <a href="/" th:href="@{'/'}"><h1 class="display-3">Carsharing Mockup App</h1></a>
-        <p class="lead text-justify">Combining Process Mining and Distributed Tracing to Improve Root Cause Analysis</p>
-        <p>The idea of the project is close the gap between the application and business layer. Therefore, a process
-            mining technology is applied to data from a distributed tracing system that is connected to a microservice
-            architecture.
-            This frontend is intended for log data creation. A user (1 - 10) receives a session_ID for each session and
+        <p class="lead text-justify">Enhancing Business Process Mining with Distributed Tracing Data in a Microservice Architecture</p>
+        <p>This frontend is intended for log data creation. A user (1 - 10) receives a session_ID for each session and
             can perform multiple activities. These activities trigger a variety of microservices in the background. When
             a new user is created, he or she gets a new session_ID assigned.
         </p>
-        <p class="text-justify">The activities necessary the process mining can be created by clicking on <span class="font-italic">"Generate
-            activities &amp; reload data model"</span>. After creating the new activity log, a scheduling table is created that
-            triggers a new data load in the process mining tool Celonis.</p>
+        <p class="text-justify">The data model can be initialized by clicking on <span class="font-italic">Initialize datamodel</span>.
+            The activity generation can be triggered manually through the <span class="font-italic">"Generate
+            activities &amp; reload data model"</span> button. After a new activity log is created, a new entry is written in the reload_trigger_table that
+            triggers a new data load in the process mining tool.</p>
 
         <p>
         <div class="row">
             <div class="col">
-                <a th:href="@{'/newUser'}" class="code"><!--<i class="fa fa-refresh" aria-hidden="false"></i>!--> New User</a>
+                <a th:href="@{'/newUser'}" class="code"><i class="fa fa-refresh" aria-hidden="false"></i> New User</a>
                 <code class="code"><samp th:text="${session.person}"/></code>
             </div>
         </div>
         </p>
         <div class="row">
             <div class="col">
-                <a th:href="@{'/newSession'}" class="code"><!--<i class="fa fa-refresh" aria-hidden="false"></i>!--> New
+                <a th:href="@{'/newSession'}" class="code"><i class="fa fa-refresh" aria-hidden="false"></i> New
                     Session</a>
                 <code class="code"><samp th:text="${session.sessionID}"/></code>
             </div>
